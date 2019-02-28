@@ -1,6 +1,6 @@
 class StudentsController < ApplicationController
   def index
-    @students = Student.all
+    @student = Student.all
 
     render("student_templates/index.html.erb")
   end

@@ -29,6 +29,13 @@
   <dd>
     <%= @student.email %>
   </dd>
+  
+  <dt>
+    Number of enrollments
+  </dt>
+  <dd>
+    <%= @student.enrollments.count %>
+  </dd>
 </dl>
 
 <a href="/delete_student/<%= @student.id %>">
@@ -40,3 +47,35 @@
 <a href="/students">
   Go back
 </a>
+
+<h4 class="mt-4">Course Load</h4>
+
+<div class="card">
+  <ul class="list-group list-group-flush">
+      <% @student.enrollments.each do |enrollment| %>
+        <li class="list-group-item">
+          <a href="/courses/<%= enrollment.course.id %>"><%= enrollment.course.title %></a>
+        </li>
+      <% end %>
+  </ul>
+</div>
+
+<h4 class="mt-4">Enroll in a new course</h4>
+<form action="/create_enrollment" method="post">
+  <!-- Label and input for title -->
+  <div class="form-group">
+    <label for="title">
+      Course
+    </label>
+
+    <%= select_tag("course_id", options_from_collection_for_select(Course.all, :id, :title, @enrollment.try(:course_id)), :class => "form-control") %>
+    or <a href="/courses/new">add a new course</a> first    
+  </div>
+          
+  <!-- Label and input for hidden department_id -->
+  <input type="hidden" name="student_id" value="<%= @student.id %>">
+
+  <button class="btn btn-block btn-outline-secondary">
+    Create enrollment
+  </button>
+</form>

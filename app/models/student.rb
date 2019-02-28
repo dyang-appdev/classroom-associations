@@ -11,4 +11,9 @@
 #
 
 class Student < ApplicationRecord
+  
+  has_many :courses, :through => :enrollments
+  has_many :departments, :through => :courses
+  has_many :enrollments
+  
 end

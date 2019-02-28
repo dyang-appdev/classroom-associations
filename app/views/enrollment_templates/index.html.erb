@@ -1,0 +1,63 @@
+<div class="row mb-3">
+  <div class="col-md-12">
+    <h1>
+      All enrollments
+    </h1>
+
+    <a href="/enrollments/new">
+      Add a new enrollment
+    </a>
+  </div>
+</div>
+
+
+<hr>
+
+<div class="row mb-3">
+  <div class="col-md-12">
+    <table class="table">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Course
+        </th>
+
+        <th>
+          Student
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @enrollments.each do |enrollment| %>
+      <tr>
+        <td>
+          <%= enrollment.id %>
+        </td>
+
+        <td>
+          <a href="/courses/<%= enrollment.course_id %>">
+          <%= enrollment.course.title %>
+          </a>
+        </td>
+
+        <td>
+          <a href="/students/<%= enrollment.student_id %>">
+          <%= enrollment.student.first_name + " " + enrollment.student.last_name %>
+          </a>
+        </td>
+
+        <td>
+          <a href="/enrollments/<%= enrollment.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

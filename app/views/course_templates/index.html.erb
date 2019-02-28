@@ -17,6 +17,10 @@
     <th>
       Title
     </th>
+    
+    <th>
+      Department
+    </th>    
 
     <th>
     </th>
@@ -30,6 +34,12 @@
 
     <td>
       <%= course.title %>
+    </td>
+    
+    <td>
+      <a href="/departments/<%= course.department_id %>">
+        <%= course.department.name %>  
+      </a>
     </td>
 
     <td>
